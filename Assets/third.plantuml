@@ -1,0 +1,37 @@
+@startuml name
+
+interface ICelestialBody {
+    +Initialize(): GameObject
+}
+
+class CameraSettings {
+
+}
+
+class Planet {
+    +Initialize(): GameObject
+}
+
+class Satellite {
+    +Initialize(): GameObject
+}
+
+class UIController {
+    AddPlanetNamesToMenu(): void
+    SelectPlanet(): void
+    OnShowPlanisphereButtonClick(): void
+    OnCalculateTrajectoriesButtonClick(): void
+    PostTrajectories(): IEnumerator
+    OpenFileDialog(): void
+}
+
+class BodyFactory {
+    +CreateCelestialBody(): ICelestialBody
+}
+
+ICelestialBody "1" <|.. "1" Planet : implements
+ICelestialBody "1" <|.. "1" Satellite : implements
+UIController "1" --> "1" BodyFactory : asks
+UIController "1" -right-> "1" CameraSettings : handles
+CameraSettings "1" <-- "1" CameraSettings : singleton
+BodyFactory "1" --> "*" ICelestialBody : uses

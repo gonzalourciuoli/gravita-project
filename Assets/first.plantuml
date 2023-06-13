@@ -1,0 +1,60 @@
+@startuml name
+
+interface ICelestialBody {
+    +Initialize(): GameObject
+}
+
+class FirebaseRequests {
+
+}
+
+class Planet {
+    +Initialize(): GameObject
+}
+
+class Satellite {
+    +Initialize(): GameObject
+}
+
+class SolarSystemInitializer {
+    +createBody(): ICelestialBody
+    +createSatellite(): ICelestialBody
+}
+
+class BodyFactory {
+    +CreateCelestialBody(): ICelestialBody
+}
+
+ICelestialBody "1" <|.. "1" Planet : implements
+ICelestialBody "1" <|.. "1" Satellite : implements
+SolarSystemInitializer "1" --> "1" BodyFactory : asks
+SolarSystemInitializer "1" -right-> "1" FirebaseRequests : uses
+FirebaseRequests "1" <-- "1" FirebaseRequests : singleton
+BodyFactory "1" --> "*" ICelestialBody : uses
+
+/' Element <|-down-  Agent
+Element <|-down- Building
+Element <|-down- Tile
+Action <-left- Element : strategy
+
+Tile <|-down-  BuildableTile
+Tile <|-down- ResourceTile
+Tile <|-down- FarmTile
+
+Building <|-down- HouseBuilding
+
+Agent <|-down- WorkerAgent
+
+City <-left- BoardController : contains
+
+Controller <-right- Player : strategy
+Controller <.. OtherController
+
+GameManager "1" -left-> "1..4" Player :contains
+
+Agent --> Inventory : contains
+Building --> Inventory: contains
+City -> Inventory: contains
+
+ResourceTile -> Resource: contains '/
+@enduml

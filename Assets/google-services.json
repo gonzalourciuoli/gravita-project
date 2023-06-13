@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1023609955021",
+    "firebase_url": "https://gravita-50d10-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gravita-50d10",
+    "storage_bucket": "gravita-50d10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023609955021:android:eb09abadb84a4f61c57f84",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.gravita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023609955021-7t48vkv6t52mk91887e7iauoafi14lps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnIF-fwv-5aEA0cxBI-RksF6TSZwc5uG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023609955021-7t48vkv6t52mk91887e7iauoafi14lps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

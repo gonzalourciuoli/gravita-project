@@ -1,0 +1,139 @@
+@startuml name
+
+class City
+{
+  id
+  teamId
+  tiles
+  inventory
+
+  AddBuilding()
+  UpdateInventory()
+  ProcessResources()
+  PutResources()
+  TakeResources()
+  SparseResources()
+}
+class BoardController
+{
+  board
+  cities
+  {static} _instance 
+
+
+  {static} getInstance()
+  Init() 
+  InstantiateInCell()
+}
+
+class GameManager
+{
+  {static} _instance 
+  {static} getInstance()
+}
+interface Controller
+{
+  Update()
+}
+class Player
+{
+
+}
+class OtherController
+{
+
+}
+class Inventory
+{
+  
+}
+abstract class Element {
+  ExecuteAction()
+  SetAction()
+  IsWorking()
+  Destroy()
+}
+
+abstract class Action 
+{ 
+  name
+  
+  Execute()
+  IsPossible()
+}  
+class Agent
+{
+  path
+  inventory
+  teamId
+  movespeed
+}
+class WorkerAgent
+{
+  
+}
+class Building
+{
+  inventory
+  teamId
+}
+class HouseBuilding
+{
+  
+}
+class Tile
+{
+  
+}
+class ResourceTile
+{
+
+}
+
+class Resource
+{
+
+}
+
+class BuildingTile
+{
+
+}
+class FarmTile
+{
+
+}
+
+
+
+
+
+
+
+
+Element <|-down-  Agent
+Element <|-down- Building
+Element <|-down- Tile
+Action <-left- Element : strategy
+
+Tile <|-down-  BuildableTile
+Tile <|-down- ResourceTile
+Tile <|-down- FarmTile
+
+Building <|-down- HouseBuilding
+
+Agent <|-down- WorkerAgent
+
+City <-left- BoardController : contains
+
+Controller <-right- Player : strategy 
+Controller <.. OtherController
+
+GameManager "1" -left-> "1..4" Player :contains
+
+Agent --> Inventory : contains
+Building --> Inventory: contains
+City -> Inventory: contains
+
+ResourceTile -> Resource: contains
+@enduml

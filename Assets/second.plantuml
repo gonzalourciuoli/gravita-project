@@ -1,0 +1,50 @@
+@startuml name
+
+class Planet {
+    +Initialize(): GameObject
+}
+
+class PlanetInfo {
+    +Initialize(): void
+}
+
+class PlanetTrajectory {
+    +GetTrajectories(): void
+    +MovePlanet(): IEnumerator
+    +UpdateTrajectory(): void
+}
+
+folder Resources {
+    
+}
+
+Planet "1" --> "1" PlanetInfo : contains
+Planet "1" --> "1" PlanetTrajectory : contains
+Planet --> Resources : loads
+
+/' Element <|-down-  Agent
+Element <|-down- Building
+Element <|-down- Tile
+Action <-left- Element : strategy
+
+Tile <|-down-  BuildableTile
+Tile <|-down- ResourceTile
+Tile <|-down- FarmTile
+
+Building <|-down- HouseBuilding
+
+Agent <|-down- WorkerAgent
+
+City <-left- BoardController : contains
+
+Controller <-right- Player : strategy
+Controller <.. OtherController
+
+GameManager "1" -left-> "1..4" Player :contains
+
+Agent --> Inventory : contains
+Building --> Inventory: contains
+City -> Inventory: contains
+
+ResourceTile -> Resource: contains '/
+@enduml
